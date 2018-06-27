@@ -1,0 +1,22 @@
+version: '2'
+services:
+  gannoy:
+    build: https://github.com/tamanobi/gannoy-docker.git
+    container_name: gannoy
+    ports:
+      - "1323:1323"
+    networks:
+      - default
+  extractor:
+    build: https://github.com/tamanobi/reverse-image-app-docker.git
+    container_name: extractor
+    ports:
+      - "8080:5000"
+    expose:
+      - "8080"
+    volumes:
+      - ./images:/web/images
+    networks:
+      - default
+networks:
+   rimage:
